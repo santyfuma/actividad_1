@@ -31,12 +31,26 @@ public class Banco {
     }
 
 
-    public void actualizarUsuario(){
+    public void actualizarUsuario(String id,String nuevoNombre,String nuevaDireccion,String nuevoEmail, String nuevaPassword) throws Exception {
+            Usuario usuario= obtenerUsuario(id);
+                if (usuario==null) {
+                    throw new Exception("Usuario no encontrado");
+                }
+                usuario.setNombre(nuevoNombre);
+                usuario.setDireccion(nuevaDireccion);
+                usuario.setEmail(nuevoEmail);
+                usuario.setPassword(nuevaPassword);
 
     }
 
-    public void eliminarUsuario(){
-
+    public void eliminarUsuario(String id) throws Exception{
+          Usuario usuario = obtenerUsuario(id);
+          if (usuario == null){
+              throw new Exception("Usuario no encontrado");
+          }
+          else {
+              usuarios.remove(usuario);
+          }
     }
 
     /**
