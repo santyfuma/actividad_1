@@ -79,7 +79,7 @@ public class BilleteraVirtual {
         this.transacciones.add(transaccion);
         destino.transacciones.add(transaccion);
         System.out.println("Transaccion realizada con exito"+transaccion);
-                
+
 
     }
     public void obtenerPorcentajeGastosIngresos(){
