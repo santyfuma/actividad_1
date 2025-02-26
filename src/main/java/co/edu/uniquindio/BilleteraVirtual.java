@@ -82,10 +82,39 @@ public class BilleteraVirtual {
 
 
     }
-    public void obtenerPorcentajeGastosIngresos(){
-
-
+    public void obtenerPorcentajeGastosIngresos() {
+        // Verifica si la billetera tiene transacciones registradas
+        if (transacciones.isEmpty())
+            System.out.prinln("No hay transacciones registradas en la billetera " + numero);
+        }
+        return;
+    // Variables para almacenar el total de gastos e ingresos
+        float totalesGastos=0;
+        float totalIngresos=0;
+    // Recorre la lista de transacciones para clasificar los montos
+    for (transacciones t : transacciones){
+        if (t.getDestino().equals(this)) {
+            totalIngresos += t.getMonto();
+            // Si esta billetera es el origen, significa que es un gasto
+        }   else if (t.getOrigen().equals(this)) {
+            totalGastos += t.getMonto();
+        }
     }
+    // Calcula el total de transacciones (suma de ingresos y gastos)
+    float totalTransacciones = totalGastos + totalIngresos;
+    // Si no hay transacciones válidas, se notifica al usuario
+    if (totalTransacciones == 0) {
+        System.out.println("No hay transacciones válidas para calcular porcentajes.");
+        return;
+    }
+    // Cálculo de porcentajes de gastos e ingresos
+    float porcentajeGastos = (totalGastos / totalTransacciones) * 100;
+    float porcentajeIngresos = (totalIngresos / totalTransacciones) * 100;
+// Muestra los resultados en un formato claro
+    System.out.println("Resumen de transacciones para la billetera " + numero + ":");
+    System.out.println("Total Gastos: $" + totalGastos + " (" + String.format("%.2f", porcentajeGastos) + "%)");
+    System.out.println("Total Ingresos: $" + totalIngresos + " (" + String.format("%.2f", porcentajeIngresos) + "%)");
+}
 
     public void recargarSaldo(float monto){
         this.saldo+=monto;
