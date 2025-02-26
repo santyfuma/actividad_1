@@ -88,7 +88,7 @@ public class BilleteraVirtual {
     }
 
     public void recargarSaldo(float monto){
-        this.saldo=(saldo+monto);
+        this.saldo+=monto;
 
     }
 
