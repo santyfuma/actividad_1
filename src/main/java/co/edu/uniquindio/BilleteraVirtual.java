@@ -58,4 +58,13 @@ public class BilleteraVirtual {
     public void obtenerPorcentajeGastosIngresos(){
 
     }
+
+    public void recargarSaldo(float monto){
+        this.saldo=(saldo+monto);
+
+    }
+
+    public void  agregarTransaccion(Transaccion transaccion){
+        this.transacciones.add(transaccion);
+    }
 }

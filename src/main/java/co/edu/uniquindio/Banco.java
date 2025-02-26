@@ -124,9 +124,8 @@ public class Banco {
         BilleteraVirtual billetera = obtenerBilletera(numeroBilletera);
         if (billetera == null) {
             throw new Exception("El billetera no existe");
-
-            billetera.recargarSaldo(monto);
         }
+        billetera.recargarSaldo(monto);
     }
 
     public void realizarTransaccion(String idOrigen, String idDestino, float monto, Categoria categoria) throws Exception {
@@ -142,7 +141,7 @@ public class Banco {
         }
 
         // Realizar la transacción
-        origen.recargarSaldo(monto - 200); // Se descuenta el monto más la tarifa de $200
+        origen.recargarSaldo(-(monto - 200)); // Se descuenta el monto más la tarifa de $200
         destino.recargarSaldo(monto); // Se recarga el monto en la billetera destino
 
         // Crear objeto Transacción
