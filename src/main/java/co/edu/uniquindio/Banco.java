@@ -1,7 +1,6 @@
 package co.edu.uniquindio;
 
 import java.lang.reflect.Array;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Banco {
@@ -100,8 +99,7 @@ public class Banco {
 
     }
 
-    public void realizarTransaccion( ){
-
+    public void realizarTransaccion(){
 
     }
 
