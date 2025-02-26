@@ -3,6 +3,7 @@ package co.edu.uniquindio;
 import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Banco {
     private ArrayList<Usuario> usuarios;

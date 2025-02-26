@@ -57,6 +57,7 @@ public class BilleteraVirtual {
     }
     public void obtenerPorcentajeGastosIngresos(){
 
+
     }
 
     public void recargarSaldo(float monto){
