@@ -70,7 +70,7 @@ public class BilleteraVirtual {
             throw new Exception("No se puede transferir saldo a la misma billetera.");
         }
         // Crear la transaccion
-        Transaccion transaccion= new Transaccion(id,monto, LocalDateTime.now(),categoria,this, destino):
+        Transaccion transaccion= new Transaccion(id,monto, LocalDateTime.now(),categoria,this, destino);
 
         // Realizar la transaccion, Debitar y acreditar saldo
         this.saldo -=monto;
@@ -79,7 +79,7 @@ public class BilleteraVirtual {
         this.transacciones.add(transaccion);
         destino.transacciones.add(transaccion);
         System.out.println("Transaccion realizada con exito"+transaccion);
-                )
+                
 
     }
     public void obtenerPorcentajeGastosIngresos(){
