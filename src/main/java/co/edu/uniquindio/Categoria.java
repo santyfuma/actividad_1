@@ -4,5 +4,8 @@ public enum Categoria {
     FACTURAS,
     VIAJES,
     GASOLINA,
-    ETC,
+    ROPA,
+    COMIDA,
+    ENTRETENIMIENTO,
+    ETC
 }

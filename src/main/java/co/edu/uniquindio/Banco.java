@@ -75,16 +75,6 @@ public class Banco {
      * @param billeteraVirtual
      * @throws Exception
      */
-    public void crearBilleteraVirtual(BilleteraVirtual billeteraVirtual) throws Exception {
-        BilleteraVirtual billeteraBuscada = obtenerBilletera(billeteraVirtual.getNumero());
-
-        if (billeteraBuscada != null) {
-            throw new Exception("Ya existe una billetera con este numero");
-        } else {
-            billeteras.add(billeteraVirtual);
-        }
-
-    }
 
     /**
      * metodo que busca una billetera para saber si esta existe
@@ -146,21 +136,18 @@ public class Banco {
         BilleteraVirtual origen = obtenerBilletera(idOrigen);
         BilleteraVirtual destino = obtenerBilletera(idDestino);
 
-        // Validaciones
         if (origen == null || destino == null) {
             throw new Exception("La billetera de origen o la billetera de destino no existe");
         }
         if (origen.getSaldo() < monto + 200) {
-            throw new Exception("Saldo insuficiente para realizar la transacción");
+            throw new Exception("Saldo insuficiente para realizar la transacción");
         }
 
-        // Realizar la transacción
-        origen.recargarSaldo(-(monto - 200)); // Se descuenta el monto más la tarifa de $200
-        destino.recargarSaldo(monto); // Se recarga el monto en la billetera destino
+        origen.recargarSaldo(-(monto + 200)); // Se descuenta el monto más la tarifa de $200
+        destino.recargarSaldo(monto);
 
-        // Crear objeto Transacción
         Transaccion transaccion = new Transaccion(
-                UUID.randomUUID().toString(), // ID único para la transacción
+                UUID.randomUUID().toString(),
                 monto,
                 LocalDateTime.now(),
                 categoria,
@@ -168,9 +155,6 @@ public class Banco {
                 destino
         );
 
-        // Registrar la transacción en ambas billeteras
         origen.agregarTransaccion(transaccion);
         destino.agregarTransaccion(transaccion);
-
     }
-}

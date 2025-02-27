@@ -55,44 +55,17 @@ public class BilleteraVirtual {
     public void consultarTransacciones(){
 
     }
-    public void realizarTransaccion(String id, BilleteraVirtual destino, float monto, Categoria categoria) throws Exception{
-        // Validaciones Previos
-        if (destino == null) {
-            throw new IllegalArgumentException("La billetera de destino no puede ser nula.");
-        }
-        if (monto <= 0) {
-            throw new IllegalArgumentException("El monto debe ser mayor que cero.");
-        }
-        if (this.saldo < monto) {
-            throw new Exception("Saldo insuficiente en la billetera de origen.");
-        }
-        if (this.equals(destino)) {
-            throw new Exception("No se puede transferir saldo a la misma billetera.");
-        }
-        // Crear la transaccion
-        Transaccion transaccion= new Transaccion(id,monto, LocalDateTime.now(),categoria,this, destino);
-
-        // Realizar la transaccion, Debitar y acreditar saldo
-        this.saldo -=monto;
-        destino.saldo=monto;
-        //Reguistrar en la billetara
-        this.transacciones.add(transaccion);
-        destino.transacciones.add(transaccion);
-        System.out.println("Transaccion realizada con exito"+transaccion);
-
-
-    }
-    public void obtenerPorcentajeGastosIngresos() {
+    public void obtenerPorcentajeGastosIngresos() throws Exception {
         // Verifica si la billetera tiene transacciones registradas
-        if (transacciones.isEmpty())
-            System.out.prinln("No hay transacciones registradas en la billetera " + numero);
+        if (transacciones.isEmpty()) {
+            throw new Exception("No hay transacciones registradas en la billetera " + numero);
         }
-        return;
     // Variables para almacenar el total de gastos e ingresos
-        float totalesGastos=0;
-        float totalIngresos=0;
-    // Recorre la lista de transacciones para clasificar los montos
-    for (transacciones t : transacciones){
+        float totalGastos = 0;
+        float totalIngresos = 0;
+
+        // Recorre la lista de transacciones para clasificar los montos
+    for (Transaccion t : transacciones){
         if (t.getDestino().equals(this)) {
             totalIngresos += t.getMonto();
             // Si esta billetera es el origen, significa que es un gasto
@@ -104,8 +77,7 @@ public class BilleteraVirtual {
     float totalTransacciones = totalGastos + totalIngresos;
     // Si no hay transacciones válidas, se notifica al usuario
     if (totalTransacciones == 0) {
-        System.out.println("No hay transacciones válidas para calcular porcentajes.");
-        return;
+        throw new Exception("No hay transacciones válidas para calcular porcentajes.");
     }
     // Cálculo de porcentajes de gastos e ingresos
     float porcentajeGastos = (totalGastos / totalTransacciones) * 100;
